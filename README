@@ -1,0 +1,14 @@
+SPF
+v=spf1 mx -all
+
+DKIM
+
+
+DMARC
+v=DMARC1; p=reject; pct=100; rua=mailto:juozas@iamjuo.com; ruf=mailto:juozas@iamjuo.com;
+
+[1] https://mxtoolbox.com
+[2] https://poolp.org
+[3] https://prefetch.eu/blog/2020/email-server
+[4] https://simonandrews.ca/articles/how-to-set-up-spf-dkim-dmarc
+[5] https://dkimvalidator.com
