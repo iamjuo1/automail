@@ -1,4 +1,4 @@
-.PHONY: require mail restart
+.PHONY: man mail require cert mda dkim spam mta restart
 .DEFAULT_GOAL = man
 
 PRK = /etc/dkim/ed25519.key
@@ -11,6 +11,8 @@ include .env
 
 man:
 	less Makefile
+
+mail: require cert mda dkim spam mta
 
 require:
 	apk add       \
@@ -39,6 +41,10 @@ dkim:
 spam:
 	cp dkim_signing.conf /etc/rspamd/local.d/dkim_signing.conf
 	rc-service rspamd restart
+
+mta:
+	cp smtpd.conf /etc/smtpd/smtpd.conf
+	rc-service smtpd restart || smtpd
 
 restart:
 	rc-service rspamd  restart
