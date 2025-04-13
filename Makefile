@@ -43,8 +43,9 @@ spam:
 	rc-service rspamd restart
 
 mta:
-	cp smtpd.conf /etc/smtpd/smtpd.conf
-	rc-service smtpd restart || smtpd
+	echo $(MAIL_SERVER) > /etc/smtpd/mailname
+	cp smtpd.conf         /etc/smtpd/smtpd.conf
+	rc-service smtpd restart || smtpd -n
 
 restart:
 	rc-service rspamd  restart

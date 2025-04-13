@@ -2,7 +2,7 @@ SPF
 v=spf1 mx -all
 
 DKIM
-
+v=DKIM1; k=ed25519; p=B3kDXQFXIb1QaEFyyJPJJVBHVimBMuQQ4nd/p9lCrzw=;
 
 DMARC
 v=DMARC1; p=reject; pct=100; rua=mailto:juozas@iamjuo.com; ruf=mailto:juozas@iamjuo.com;
