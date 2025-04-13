@@ -23,7 +23,7 @@ require:
 
 cert:
 	acme.sh --register-account -m $(MAIL)
-	CF_Token=$(CF_Token) && acme.sh --issue --dns dns_cf -d $(MAIL_SERVER)
+	CF_Token=$(CF_Token) acme.sh --issue --dns dns_cf -d $(MAIL_SERVER)
 
 mda:
 	cp dovecot.conf /etc/dovecot/dovecot.conf
