@@ -1,30 +1,5 @@
 #!/bin/sh
 
-set -u
-source .env
-
-adduser $MAIL_USER -G mail
-
-# CERT
-acme.sh --register-account -m   $MAIL_DOMAIN
-acme.sh --issue --dns dns_cf -d $MAIL_DOMAIN
-
-# MDA
-
-cp dovecot.conf /etc/dovecot/dovecot.conf
-rc-service dovecot start
-
-# DKIM
-mkdir /etc/dkim
-openssl genpkey -algorithm ed25519             -out /etc/dkim/ed25519.key
-openssl pkey -in /etc/dkim/ed25519.key -pubout -out /etc/dkim/ed25519.pub
-chown rspamd /etc/dkim/ed25519.key
-cat          /etc/dkim/ed25519.pub
-
-# Spam filter
-cp dkim_signing.conf /etc/rspamd/local.d/dkim_signing.conf
-rc-service rspamd start
-
 # MTA
 
 # echo "$MAIL_USER $PASS_HASH" > /etc/smtpd/passwds
