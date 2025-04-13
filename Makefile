@@ -7,7 +7,7 @@ include .env
 	cp .example.env .env
 
 man:
-	less Makefile README
+	less Makefile
 
 require:
 	apk add       \

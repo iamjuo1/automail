@@ -3,10 +3,10 @@
 set -u
 source .env
 
-addgroup mail
 adduser $MAIL_USER -G mail
 
 # CERT
+acme.sh --register-account -m   $MAIL_DOMAIN
 acme.sh --issue --dns dns_cf -d $MAIL_DOMAIN
 
 # MDA
