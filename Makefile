@@ -27,7 +27,7 @@ cert:
 
 mda:
 	cp dovecot.conf /etc/dovecot/dovecot.conf
-	rc-service dovecot restart
+	rc-service dovecot restart || dovecot
 
 dkim:
 	mkdir -p /etc/dkim
